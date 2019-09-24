@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h6>修改富文本字符串最后一张图片</h6>
+</body>
+<script>
+    var str =
+        `<div>123</div>
+    <img style="border: 1px solid #1e83d3;" width="500" src="./index_banner1.jpg" alt="" srcset="">
+    <div>123</div>
+    <img style="border: 1px solid #1e83d3;" width="500" src="./index_banner2.jpg" alt="" srcset="">
+    <div>123</div>
+    <img style="border: 1px solid #1e83d3;" width="500" src="./index_banner3.jpg" alt="" srcset="">
+    <div>123</div>
+    `
+    // ,str=`<P>xczxzxzxcxcxc<img src="http://file.ynet.com/2/1612/12/12119048.jpg" mce_src="http://file.ynet.com/2/1612/12/12119048.jpg">dfsd<img src="http://file.ynet.com/2/1612/12/12119048.jpg" mce_src="http://file.ynet.com/2/1612/12/12119048.jpg">sdfs</P>`
+    function formatImg(str) {
+        var tags = str.replace(/</g, '^<').split(/\^/).map(v => {
+            return {
+                isImg: v.match(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi) !== null,
+                str: v
+            }
+        }).reverse()
+        for (let val of tags) {
+            if (val.isImg) {
+                val.str='<div>hahaha</div>'
+                break;
+            };
+        }
+        var res = tags.reverse().map(v=>v.str).join('')
+        console.log(res)
+        return res;
+    }
+    formatImg(str)
+</script>
+
+</html>
