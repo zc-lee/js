@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>ie edge 不兼容 es6 flat</h2>
+    <div>Object doesn't support property or method 'flat'</div>
+    <script>
+        if (!Array.prototype.flat) {
+            console.warn('can`t support flat')
+            Array.prototype.flat = function () {
+                return this.reduce((acc, val) => acc.concat(val), [])
+            }
+        }
+    </script>
+</body>
+
+</html>
