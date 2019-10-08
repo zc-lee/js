@@ -14,7 +14,7 @@
     <script>
         if (!Array.prototype.flat) {
             console.warn('can`t support flat')
-            Array.prototype.flat = function () {
+            Array.prototype.flat = function (num = 1) {
                 return this.reduce((acc, val) => acc.concat(val), [])
             }
         }
